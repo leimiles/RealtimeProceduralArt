@@ -373,7 +373,7 @@ namespace miles {
         static bool isMouseDown = false;
         static bool isMouseUp = false;
         static bool isMouseLeaveWindow = false;
-        static bool isAltKeyDown = false;
+
         static void SetMouseAndKeyState() {
             isMouseDrag = Event.current.type == EventType.MouseDrag && Event.current.button == 0;
             isMouseDown = Event.current.type == EventType.MouseDown && Event.current.button == 0;
