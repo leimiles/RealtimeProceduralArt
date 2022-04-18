@@ -13,6 +13,7 @@ namespace miles {
         }
 
         public override void OnInspectorGUI() {
+            DrawDragPrefabSection();
             if (!prefab_DataCollection) {
                 GUILayout.Label("Data Error");
             }
@@ -20,7 +21,12 @@ namespace miles {
                 GUILayout.Label("No Data");
                 return;
             }
+
             //base.OnInspectorGUI();
+        }
+
+        void DrawDragPrefabSection() {
+            GUILayout.Box("wazzup", GUILayout.Width(EditorGUIUtility.currentViewWidth), GUILayout.Height(300));
         }
     }
 }

@@ -76,7 +76,7 @@ namespace miles {
                     EditorGUILayout.EndHorizontal();
                     DrawBrushIntantiateMode();
                     DrawPrefabSection();
-                    if (Prefab_Data.resources_Pool.Count > 0) {
+                    if (Prefab_Data.resources_Pool != null && Prefab_Data.resources_Pool.Count > 0) {
                         foreach (int key in Prefab_Data.resources_Pool.Keys) {
                             if (Prefab_Data.resources_Pool[key].is_Activated) {
                                 MyWindowGUI.scrollViewPos_PlacementParameters = EditorGUILayout.BeginScrollView(MyWindowGUI.scrollViewPos_PlacementParameters, true, true, GUILayout.Height(main_Window.position.height - (MyWindowGUI.prefabs_Section_Height + 120)));
@@ -99,9 +99,9 @@ namespace miles {
             }
             GUI.color = Color.white;
             EditorGUILayout.Space();
-
             EditorGUILayout.EndVertical();
             //Debug.Log(active_Tab.ToString());
+
         }
 
         void DrawSavePrefabDataButton() {
@@ -133,8 +133,8 @@ namespace miles {
 
         void SetPrefabDataButtonColor(int ID) {
             if (Prefab_Data.resources_Pool[ID].is_Activated == true) {
-                //MyWindowGUI.prefab_Data_Button_Style.normal.background = Texture2D.blackTexture;
                 GUI.color = MyWindowGUI.prefab_Data_Button_Activated_Colr;
+                //MyWindowGUI.prefab_Data_Button_Style.normal.background = Texture2D.blackTexture;
             } else {
                 GUI.color = MyWindowGUI.prefab_Data_Button_Deactivated_Color;
                 //MyWindowGUI.prefab_Data_Button_Style.normal.background = Texture2D.whiteTexture;
@@ -468,8 +468,10 @@ namespace miles {
 
         void DrawPrefabSection() {
             Repaint();
+            if (Prefab_Data.resources_Pool == null) {
+                return;
+            }
             MyWindowGUI.scrollViewPos_PrefabDatas = EditorGUILayout.BeginScrollView(MyWindowGUI.scrollViewPos_PrefabDatas, true, true, GUILayout.Height(MyWindowGUI.prefabs_Section_Height));
-
             int column = Mathf.FloorToInt(main_Window.position.width / MyWindowGUI.prefab_Data_Area_Size);
             int row;
             if (column > Prefab_Data.resources_Pool.Count) {
