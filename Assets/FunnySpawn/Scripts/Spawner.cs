@@ -24,19 +24,27 @@ namespace miles {
                 GameObject clone = PrefabUtility.InstantiatePrefab(obj) as GameObject;
                 PlacementInfo placementInfo = new PlacementInfo(obj.GetInstanceID(), clone.GetInstanceID());
                 Undo.RecordObject(placementInfoManager, "add" + clone.name);
+                Matrix4x4 translate;
+                translate = Matrix4x4.Translate(clone.transform.position);
+                translate = translate * Matrix4x4.Translate(brushSettings.target);
+                clone.transform.position = translate.GetColumn(3);
+                placementInfo.position = clone.transform.position;
 
-                placementInfo.position = brushSettings.target;
-                clone.transform.position = brushSettings.target;
+                Matrix4x4 rotate;
+                rotate = Matrix4x4.Rotate(clone.transform.rotation);
+                rotate = Matrix4x4.Rotate(brushSettings.Final_Quaternion) * rotate;
+                clone.transform.eulerAngles = rotate.rotation.eulerAngles;
+                placementInfo.eulerAngles = clone.transform.eulerAngles;
 
-                placementInfo.eulerAngles = brushSettings.EulerAngles;
-                clone.transform.eulerAngles = brushSettings.EulerAngles;
-
-                placementInfo.scale = Vector3.one * brushSettings.unitformScaleOffset;
-                clone.transform.localScale = Vector3.one * brushSettings.unitformScaleOffset;
+                Matrix4x4 scale;
+                scale = Matrix4x4.Scale(clone.transform.localScale);
+                scale = scale * Matrix4x4.Scale(Vector3.one * brushSettings.unitformScaleOffset);
+                clone.transform.localScale = scale.lossyScale;
+                placementInfo.scale = clone.transform.localScale;
 
                 placementInfo.Name = obj.name;
 
-                EditorCoroutineUtility.StartCoroutineOwnerless(ScaleAnim2(clone.transform, Vector3.one * brushSettings.unitformScaleOffset));
+                EditorCoroutineUtility.StartCoroutineOwnerless(ScaleAnim2(clone.transform, clone.transform.localScale));
 
                 if (sceneRoot) {
                     clone.transform.SetParent(sceneRoot.transform);

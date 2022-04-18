@@ -17,6 +17,12 @@ namespace miles {
                 return eulerAngles;
             }
         }
+        private Quaternion final_Quaternion;
+        public Quaternion Final_Quaternion {
+            get {
+                return final_Quaternion;
+            }
+        }
         public bool use_WorldY;
         public bool use_AlignedDirection;
         public bool use_FixedRotation;
@@ -61,6 +67,8 @@ namespace miles {
                 rotation2 = Matrix4x4.identity;
             }
             Matrix4x4 rotation_Final = rotation1 * rotation2;
+            this.final_Quaternion = rotation_Final.rotation;
+
             this.eulerAngles = rotation_Final.rotation.eulerAngles;
 
             Matrix4x4 scale = Matrix4x4.Scale(Vector3.one * unitformScaleOffset);

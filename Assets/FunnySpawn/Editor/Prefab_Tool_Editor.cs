@@ -70,6 +70,7 @@ namespace miles {
             switch (active_Tab) {
                 case Toolbar_Tabs.Draw:
                     EditorGUILayout.BeginHorizontal();
+                    DrawClearPrefabDataButton();
                     DrawSavePrefabDataButton();
                     DrawExportSpawnListButton();
                     EditorGUILayout.EndHorizontal();
@@ -103,6 +104,15 @@ namespace miles {
 
         }
 
+        void DrawClearPrefabDataButton() {
+            if (GUILayout.Button("Clear Prefabs Data")) {
+                if (Prefab_Data.resources_Pool != null && Prefab_Data.resources_Pool.Count > 0) {
+                    Prefab_Data.resources_Pool.Clear();
+                }
+            }
+
+        }
+
         void DrawSavePrefabDataButton() {
             if (GUILayout.Button("Save Prefabs Data")) {
                 if (prefab_DataCollection == null || prefab_DataCollection.prefabs == null) {
@@ -131,6 +141,10 @@ namespace miles {
         }
 
         void SetPrefabDataButtonColor(int ID) {
+            if (!Prefab_Data.resources_Pool.ContainsKey(ID)) {
+                Debug.Log("No Such ID: " + ID);
+                return;
+            }
             if (Prefab_Data.resources_Pool[ID].is_Activated == true) {
                 GUI.color = MyWindowGUI.prefab_Data_Button_Activated_Colr;
                 //MyWindowGUI.prefab_Data_Button_Style.normal.background = Texture2D.blackTexture;
@@ -162,7 +176,8 @@ namespace miles {
             foreach (MeshFilter meshFilter in meshFilters) {
                 CombineInstance combineInstance = new CombineInstance();
                 combineInstance.mesh = meshFilter.sharedMesh;
-                combineInstance.transform = Matrix4x4.identity;
+                //combineInstance.transform = Matrix4x4.identity;
+                combineInstance.transform = meshFilter.transform.localToWorldMatrix;
                 combineInstances.Add(combineInstance);
             }
             foreach (SkinnedMeshRenderer skinnedMeshRenderer in skinnedMeshRenderers) {
@@ -285,6 +300,7 @@ namespace miles {
             GUILayout.Label("Prefabs Datas: ", GUILayout.Width(80));
             prefab_DataCollection = (Prefab_DataCollection)EditorGUILayout.ObjectField(prefab_DataCollection, typeof(Prefab_DataCollection), false);
             if (GUILayout.Button("Load", GUILayout.Width(80))) {
+                /*
                 if (prefab_DataCollection == null || prefab_DataCollection.prefabs == null) {
                     return;
                 }
@@ -293,7 +309,10 @@ namespace miles {
                 for (int i = 0; i < count; i++) {
                     objects[i] = prefab_DataCollection.prefabs[i];
                 }
-                AddPrefabData(objects);
+                */
+                //need new load function
+
+                //AddPrefabData(objects);
             }
         }
 
@@ -504,6 +523,10 @@ namespace miles {
         }
 
         void DrawPrefabDataUI(int ID, int row, int column) {
+            if (!Prefab_Data.resources_Pool.ContainsKey(ID)) {
+                Debug.Log("No such ID: " + ID);
+                return;
+            }
             // render the box just because the scroll view can't work via guilayout.Area
             GUILayout.Box("", MyWindowGUI.prefab_Data_Area_Style, GUILayout.Width(MyWindowGUI.prefab_Data_Area_Size), GUILayout.Height(MyWindowGUI.prefab_Data_Area_Size));
             Rect PrefabData_Rect = new Rect(
