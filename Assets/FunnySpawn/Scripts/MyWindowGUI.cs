@@ -54,7 +54,7 @@ namespace miles {
             foldoutIndentWidth = 18;
 
             brushModePopupWidth = 350;
-            Prefab_Data_Collection_DragArea_Height = 400;
+            Prefab_Data_Collection_DragArea_Height = 300;
 
             prefab_Datas_Selection_Mode_Style = new GUIStyle(GUI.skin.GetStyle("toggle"));
             brush = new BrushSettings();

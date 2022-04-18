@@ -30,7 +30,6 @@ namespace miles {
 
         private void LoadResources() {
             Prefab_Data.Init(0);
-
         }
 
         // called once the window is created
@@ -79,7 +78,7 @@ namespace miles {
                     if (Prefab_Data.resources_Pool != null && Prefab_Data.resources_Pool.Count > 0) {
                         foreach (int key in Prefab_Data.resources_Pool.Keys) {
                             if (Prefab_Data.resources_Pool[key].is_Activated) {
-                                MyWindowGUI.scrollViewPos_PlacementParameters = EditorGUILayout.BeginScrollView(MyWindowGUI.scrollViewPos_PlacementParameters, true, true, GUILayout.Height(main_Window.position.height - (MyWindowGUI.prefabs_Section_Height + 120)));
+                                MyWindowGUI.scrollViewPos_PlacementParameters = EditorGUILayout.BeginScrollView(MyWindowGUI.scrollViewPos_PlacementParameters, false, false, GUILayout.Height(main_Window.position.height - (MyWindowGUI.prefabs_Section_Height + 120)));
                                 DrawPlacementParameter(Prefab_Data.resources_Pool[key].Name, Prefab_Data.resources_Pool[key].brushSettings);
                                 EditorGUILayout.EndScrollView();
                             }
@@ -152,6 +151,7 @@ namespace miles {
                     Spawner.IDs.Add(key);
                 }
             }
+            //Debug.Log(Spawner.IDs.Count);
         }
 
         static Mesh preview_Mesh;
@@ -389,19 +389,18 @@ namespace miles {
                 Ray brushRay = HandleUtility.GUIPointToWorldRay(Event.current.mousePosition);
                 RaycastHit brushHitOn;
                 if (IsBrushHit(brushRay.origin, brushRay.direction, out brushHitOn)) {
+                    //SceneView.currentDrawingSceneView.Focus();
+                    if (!SceneView.currentDrawingSceneView.hasFocus) {
+                        SceneView.currentDrawingSceneView.Focus();
+                    }
+                    SceneView.RepaintAll();
                     SetMouseAndKeyState();
-                    //SceneView.RepaintAll();
                     HandleUtility.AddDefaultControl(GUIUtility.GetControlID(FocusType.Passive));
-                    SceneView.currentDrawingSceneView.Focus();
                     if (Event.current.modifiers == EventModifiers.Alt) {
                     } else {
                         switch (brush_Instantiate_Mode) {
                             case Brush_Instantiate_Mode.Click_Single:
                                 int ID = Spawner.IDs[0];
-                                if (!Prefab_Data.resources_Pool.ContainsKey(ID)) {
-                                    Debug.Log("ID: " + ID + " doesn't exist.");
-                                    return;
-                                }
                                 KeyboardRecation(Prefab_Data.resources_Pool[ID].brushSettings);
                                 DrawPreview(ID, Prefab_Data.resources_Pool[ID].brushSettings);
                                 UpdateBrushSettings(Prefab_Data.resources_Pool[ID].brushSettings, brushHitOn);
@@ -577,7 +576,6 @@ namespace miles {
             SceneView.onSceneGUIDelegate -= this.OnSceneGUI;
 #else
             SceneView.duringSceneGui -= this.OnSceneGUI;
-            SceneView.duringSceneGui += this.OnSceneGUI;
 #endif
         }
 
