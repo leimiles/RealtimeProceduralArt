@@ -471,7 +471,7 @@ namespace miles {
             if (Prefab_Data.resources_Pool == null) {
                 return;
             }
-            MyWindowGUI.scrollViewPos_PrefabDatas = EditorGUILayout.BeginScrollView(MyWindowGUI.scrollViewPos_PrefabDatas, true, true, GUILayout.Height(MyWindowGUI.prefabs_Section_Height));
+            MyWindowGUI.scrollViewPos_PrefabDatas = EditorGUILayout.BeginScrollView(MyWindowGUI.scrollViewPos_PrefabDatas, false, false, GUILayout.Height(MyWindowGUI.prefabs_Section_Height));
             int column = Mathf.FloorToInt(main_Window.position.width / MyWindowGUI.prefab_Data_Area_Size);
             int row;
             if (column > Prefab_Data.resources_Pool.Count) {

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 namespace miles {
     public static class MyWindowGUI {
@@ -11,6 +12,8 @@ namespace miles {
         public static int prefabs_Section_Height;
         public static int prefab_Data_Area_Size;
         public static GUIStyle prefab_Data_Area_Style;
+        public static GUIStyle prefab_Data_Collection_Style;
+        public static int Prefab_Data_Collection_DragArea_Height;
         public static GUIStyle prefab_Data_Button_Style;
         public static Color prefab_Data_Button_Activated_Colr;
         public static Color prefab_Data_Button_Deactivated_Color;
@@ -35,6 +38,11 @@ namespace miles {
             prefab_Data_Area_Style.margin = new RectOffset(5, 0, 5, 0);
             prefab_Data_Area_Style.hover.background = Texture2D.whiteTexture;
 
+            prefab_Data_Collection_Style = new GUIStyle(GUI.skin.GetStyle("box"));
+            prefab_Data_Collection_Style.alignment = TextAnchor.MiddleCenter;
+            prefab_Data_Collection_Style.fontSize = 32;
+
+
             prefab_Data_Button_Style = new GUIStyle(GUI.skin.GetStyle("button"));
             prefab_Data_Button_Style.alignment = TextAnchor.LowerCenter;
             prefab_Data_Button_Style.fixedHeight = prefab_Data_Area_Size;
@@ -46,6 +54,7 @@ namespace miles {
             foldoutIndentWidth = 18;
 
             brushModePopupWidth = 350;
+            Prefab_Data_Collection_DragArea_Height = 400;
 
             prefab_Datas_Selection_Mode_Style = new GUIStyle(GUI.skin.GetStyle("toggle"));
             brush = new BrushSettings();

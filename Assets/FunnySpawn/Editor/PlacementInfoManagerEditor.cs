@@ -20,6 +20,9 @@ namespace miles {
                 GUILayout.Label("No Data");
                 return;
             }
+            if (!MyWindowGUI.is_Init) {
+                MyWindowGUI.Init();
+            }
             if (GUILayout.Button("Export")) {
                 Reorder();
                 ExportTxt();
