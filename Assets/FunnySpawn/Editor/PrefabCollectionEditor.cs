@@ -27,24 +27,15 @@ namespace miles {
                 }
             }
             DisplayPreview();
-
             base.OnInspectorGUI();
         }
 
         void DisplayPreview() {
-
         }
 
         void DisplayDragSection() {
 
             MyWindowGUI.scrollViewPos_PrefabDatas = EditorGUILayout.BeginScrollView(MyWindowGUI.scrollViewPos_PrefabDatas, false, false, GUILayout.Height(MyWindowGUI.prefabs_Section_Height));
-            int column = Mathf.FloorToInt(EditorGUIUtility.currentViewWidth / MyWindowGUI.prefab_Data_Area_Size);
-            int row;
-            if (column > prefab_DataCollection.prefabs.Count) {
-                row = 1;
-            } else {
-                row = Mathf.CeilToInt(prefab_DataCollection.prefabs.Count * 1.0f / column * 1.0f);
-            }
             // this is just background
             Rect background_Rect = new Rect(0, 0, EditorGUIUtility.currentViewWidth, MyWindowGUI.Prefab_Data_Collection_DragArea_Height);
             GUI.Box(background_Rect, "Drag Prefabs Here", MyWindowGUI.prefab_Data_Collection_Style);

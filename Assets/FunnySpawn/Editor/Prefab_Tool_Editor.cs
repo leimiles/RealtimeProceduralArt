@@ -389,10 +389,6 @@ namespace miles {
                 Ray brushRay = HandleUtility.GUIPointToWorldRay(Event.current.mousePosition);
                 RaycastHit brushHitOn;
                 if (IsBrushHit(brushRay.origin, brushRay.direction, out brushHitOn)) {
-                    //SceneView.currentDrawingSceneView.Focus();
-                    if (!SceneView.currentDrawingSceneView.hasFocus) {
-                        SceneView.currentDrawingSceneView.Focus();
-                    }
                     SceneView.RepaintAll();
                     SetMouseAndKeyState();
                     HandleUtility.AddDefaultControl(GUIUtility.GetControlID(FocusType.Passive));
