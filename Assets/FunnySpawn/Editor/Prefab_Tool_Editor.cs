@@ -407,6 +407,9 @@ namespace miles {
                         switch (brush_Instantiate_Mode) {
                             case Brush_Instantiate_Mode.Click_Single:
                                 int ID = Spawner.IDs[0];
+                                if (!Prefab_Data.resources_Pool.ContainsKey(ID)) {
+                                    return;
+                                }
                                 KeyboardRecation(Prefab_Data.resources_Pool[ID].brushSettings);
                                 DrawPreview(ID, Prefab_Data.resources_Pool[ID].brushSettings);
                                 UpdateBrushSettings(Prefab_Data.resources_Pool[ID].brushSettings, brushHitOn);
