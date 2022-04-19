@@ -13,4 +13,200 @@ MonoBehaviour:
   m_Name: PlacementInfo
   m_EditorClassIdentifier: 
   Name: 
-  placementInfos: []
+  placementInfos:
+  - belong_ID: 0
+    prefab_ID: 28154
+    Name: Medivel_House_01
+    ID: -173088
+    position: {x: 563.1303, y: 31.370094, z: 502.74832}
+    eulerAngles: {x: -0, y: 0, z: 0}
+    scale: {x: 1, y: 1, z: 1}
+  - belong_ID: 0
+    prefab_ID: 28154
+    Name: Medivel_House_01
+    ID: -173104
+    position: {x: 548.5729, y: 31.370094, z: 502.77853}
+    eulerAngles: {x: -0, y: 0, z: 0}
+    scale: {x: 1, y: 1, z: 1}
+  - belong_ID: 0
+    prefab_ID: 28154
+    Name: Medivel_House_01
+    ID: -173120
+    position: {x: 534.2739, y: 31.370094, z: 502.6167}
+    eulerAngles: {x: -0, y: 0, z: 0}
+    scale: {x: 1, y: 1, z: 1}
+  - belong_ID: 0
+    prefab_ID: 28154
+    Name: Medivel_House_01
+    ID: -173136
+    position: {x: 564.57056, y: 31.370094, z: 525.2909}
+    eulerAngles: {x: -0, y: 270, z: 0}
+    scale: {x: 1, y: 1, z: 1}
+  - belong_ID: 0
+    prefab_ID: 28154
+    Name: Medivel_House_01
+    ID: -173152
+    position: {x: 530.7568, y: 31.370094, z: 524.8664}
+    eulerAngles: {x: -0, y: 90, z: 0}
+    scale: {x: 1, y: 1, z: 1}
+  - belong_ID: 0
+    prefab_ID: 28154
+    Name: Medivel_House_01
+    ID: -173168
+    position: {x: 549.5518, y: 27.570099, z: 529.8212}
+    eulerAngles: {x: -0, y: 180, z: 0}
+    scale: {x: 0.4, y: 0.4, z: 0.4}
+  - belong_ID: 0
+    prefab_ID: 28060
+    Name: Rabbit
+    ID: -229044
+    position: {x: 725.9, y: 24.379677, z: 508.34036}
+    eulerAngles: {x: -0, y: 194.99998, z: 0}
+    scale: {x: 1, y: 1, z: 1}
+  - belong_ID: 0
+    prefab_ID: 28060
+    Name: Rabbit
+    ID: -229292
+    position: {x: 732.2408, y: 21.369171, z: 507.22336}
+    eulerAngles: {x: -0, y: 255, z: 0}
+    scale: {x: 1, y: 1, z: 1}
+  - belong_ID: 0
+    prefab_ID: 28060
+    Name: Rabbit
+    ID: -229540
+    position: {x: 729.31323, y: 22.742678, z: 503.17783}
+    eulerAngles: {x: 6.747334, y: 259.0598, z: 62.033337}
+    scale: {x: 1, y: 1, z: 1}
+  - belong_ID: 0
+    prefab_ID: 28060
+    Name: Rabbit
+    ID: -229788
+    position: {x: 725.78076, y: 24.230333, z: 503.55695}
+    eulerAngles: {x: 301.2865, y: 5.396555, z: 350.421}
+    scale: {x: 1, y: 1, z: 1}
+  - belong_ID: 0
+    prefab_ID: 28060
+    Name: Rabbit
+    ID: -230036
+    position: {x: 729.68677, y: 18.30963, z: 500.81442}
+    eulerAngles: {x: 326.1255, y: 282.12146, z: 54.63449}
+    scale: {x: 1, y: 1, z: 1}
+  - belong_ID: 0
+    prefab_ID: 28058
+    Name: Moose
+    ID: -230290
+    position: {x: 745.4635, y: 1.0525608, z: 486.02484}
+    eulerAngles: {x: -0, y: 0, z: 0}
+    scale: {x: 1, y: 1, z: 1}
+  - belong_ID: 0
+    prefab_ID: 28058
+    Name: Moose
+    ID: -230506
+    position: {x: 740.7975, y: 0.20888138, z: 484.46274}
+    eulerAngles: {x: -0, y: 330, z: 0}
+    scale: {x: 1, y: 1, z: 1}
+  - belong_ID: 0
+    prefab_ID: 28152
+    Name: Medival _House_02
+    ID: -230778
+    position: {x: 751.65393, y: 4.874893, z: 483.70294}
+    eulerAngles: {x: -0, y: 135, z: 0}
+    scale: {x: 1, y: 1, z: 1}
+  - belong_ID: 0
+    prefab_ID: 28152
+    Name: Medival _House_02
+    ID: -231108
+    position: {x: 766.2284, y: 27.570097, z: 511.71582}
+    eulerAngles: {x: -0, y: 240, z: 0}
+    scale: {x: 1, y: 1, z: 1}
+  - belong_ID: 0
+    prefab_ID: 28182
+    Name: House
+    ID: -231444
+    position: {x: 774.33246, y: 27.370098, z: 477.74185}
+    eulerAngles: {x: 270, y: 315, z: 0}
+    scale: {x: 379.99985, y: 379.99985, z: 379.99985}
+  - belong_ID: 0
+    prefab_ID: 28182
+    Name: House
+    ID: -231458
+    position: {x: 756.3444, y: 17.624151, z: 468.387}
+    eulerAngles: {x: 270, y: 14.999987, z: 0}
+    scale: {x: 379.99985, y: 379.99985, z: 379.99985}
+  - belong_ID: 0
+    prefab_ID: 28182
+    Name: House
+    ID: -231472
+    position: {x: 753.2456, y: 19.96791, z: 506.42453}
+    eulerAngles: {x: 334.30548, y: 194.09892, z: 165.90108}
+    scale: {x: 379.99985, y: 379.99985, z: 379.99985}
+  - belong_ID: 0
+    prefab_ID: 28182
+    Name: House
+    ID: -231486
+    position: {x: 734.4448, y: 24.152481, z: 506.82}
+    eulerAngles: {x: 332.7577, y: 164.89043, z: 15.109577}
+    scale: {x: 379.99985, y: 379.99985, z: 379.99985}
+  - belong_ID: 0
+    prefab_ID: 27110
+    Name: Fantasy_House_6
+    ID: -250312
+    position: {x: 655.8988, y: 13.520846, z: 257.64035}
+    eulerAngles: {x: 0.000002504478, y: 0, z: 0}
+    scale: {x: 1, y: 1, z: 1}
+  - belong_ID: 0
+    prefab_ID: 28054
+    Name: Deer
+    ID: -313804
+    position: {x: 663.56384, y: 7.7207355, z: 252.64436}
+    eulerAngles: {x: -0, y: 0, z: 0}
+    scale: {x: 1, y: 1, z: 1}
+  - belong_ID: 0
+    prefab_ID: 28054
+    Name: Deer
+    ID: -314036
+    position: {x: 657.6735, y: 9.687731, z: 253.60826}
+    eulerAngles: {x: -0, y: 0, z: 0}
+    scale: {x: 1, y: 1, z: 1}
+  - belong_ID: 0
+    prefab_ID: 28054
+    Name: Deer
+    ID: -314332
+    position: {x: 662.9901, y: 7.9231052, z: 252.7458}
+    eulerAngles: {x: -0, y: 0, z: 0}
+    scale: {x: 1, y: 1, z: 1}
+  - belong_ID: 0
+    prefab_ID: 28054
+    Name: Deer
+    ID: -315000
+    position: {x: 654.1128, y: 9.157591, z: 252.14996}
+    eulerAngles: {x: -0, y: 0, z: 0}
+    scale: {x: 1, y: 1, z: 1}
+  - belong_ID: 0
+    prefab_ID: 28054
+    Name: Deer
+    ID: -315232
+    position: {x: 649.4616, y: 11.875093, z: 254.72688}
+    eulerAngles: {x: -0, y: 0, z: 0}
+    scale: {x: 1, y: 1, z: 1}
+  - belong_ID: 0
+    prefab_ID: 28054
+    Name: Deer
+    ID: -315464
+    position: {x: 648.3339, y: 12.451515, z: 255.42159}
+    eulerAngles: {x: -0, y: 0, z: 0}
+    scale: {x: 1, y: 1, z: 1}
+  - belong_ID: 0
+    prefab_ID: 28054
+    Name: Deer
+    ID: -315696
+    position: {x: 652.1527, y: 11.185808, z: 254.09473}
+    eulerAngles: {x: -0, y: 0, z: 0}
+    scale: {x: 1, y: 1, z: 1}
+  - belong_ID: 0
+    prefab_ID: 27110
+    Name: Fantasy_House_6
+    ID: -320552
+    position: {x: 656.41394, y: 12.499392, z: 256.57062}
+    eulerAngles: {x: 0.000002504478, y: 0, z: 0}
+    scale: {x: 1, y: 1, z: 1}

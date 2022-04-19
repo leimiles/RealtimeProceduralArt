@@ -49,7 +49,6 @@ namespace miles {
                 if (sceneRoot) {
                     clone.transform.SetParent(sceneRoot.transform);
                 }
-
                 placementInfoManager.placementInfos.Add(placementInfo);
 
                 Undo.RegisterCreatedObjectUndo(clone, "brush stroke: " + clone.name);
