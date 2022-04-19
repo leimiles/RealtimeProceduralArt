@@ -300,19 +300,10 @@ namespace miles {
             GUILayout.Label("Prefabs Datas: ", GUILayout.Width(80));
             prefab_DataCollection = (Prefab_DataCollection)EditorGUILayout.ObjectField(prefab_DataCollection, typeof(Prefab_DataCollection), false);
             if (GUILayout.Button("Load", GUILayout.Width(80))) {
-                /*
-                if (prefab_DataCollection == null || prefab_DataCollection.prefabs == null) {
-                    return;
+                Prefab_Data.Clear();
+                if (prefab_DataCollection) {
+                    AddPrefabData(prefab_DataCollection.prefabs.ToArray());
                 }
-                int count = prefab_DataCollection.prefabs.Count;
-                Object[] objects = new Object[count];
-                for (int i = 0; i < count; i++) {
-                    objects[i] = prefab_DataCollection.prefabs[i];
-                }
-                */
-                //need new load function
-
-                //AddPrefabData(objects);
             }
         }
 
@@ -482,9 +473,6 @@ namespace miles {
 
         void DrawPrefabSection() {
             Repaint();
-            if (Prefab_Data.resources_Pool == null) {
-                return;
-            }
             MyWindowGUI.scrollViewPos_PrefabDatas = EditorGUILayout.BeginScrollView(MyWindowGUI.scrollViewPos_PrefabDatas, false, false, GUILayout.Height(MyWindowGUI.prefabs_Section_Height));
             int column = Mathf.FloorToInt(main_Window.position.width / MyWindowGUI.prefab_Data_Area_Size);
             int row;
@@ -523,10 +511,6 @@ namespace miles {
         }
 
         void DrawPrefabDataUI(int ID, int row, int column) {
-            if (!Prefab_Data.resources_Pool.ContainsKey(ID)) {
-                Debug.Log("No such ID: " + ID);
-                return;
-            }
             // render the box just because the scroll view can't work via guilayout.Area
             GUILayout.Box("", MyWindowGUI.prefab_Data_Area_Style, GUILayout.Width(MyWindowGUI.prefab_Data_Area_Size), GUILayout.Height(MyWindowGUI.prefab_Data_Area_Size));
             Rect PrefabData_Rect = new Rect(
