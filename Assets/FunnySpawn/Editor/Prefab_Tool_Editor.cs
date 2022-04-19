@@ -297,7 +297,7 @@ namespace miles {
         }
         static Prefab_DataCollection prefab_DataCollection;
         void DrawPrefabCollectionField() {
-            GUILayout.Label("Prefabs Datas: ", GUILayout.Width(80));
+            GUILayout.Label("Prefabs Datas: ", GUILayout.Width(90));
             prefab_DataCollection = (Prefab_DataCollection)EditorGUILayout.ObjectField(prefab_DataCollection, typeof(Prefab_DataCollection), false);
             if (GUILayout.Button("Load", GUILayout.Width(80))) {
                 Prefab_Data.Clear();
