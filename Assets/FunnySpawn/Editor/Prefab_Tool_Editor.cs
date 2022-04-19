@@ -107,7 +107,7 @@ namespace miles {
         void DrawClearPrefabDataButton() {
             if (GUILayout.Button("Clear Prefabs Data")) {
                 if (Prefab_Data.resources_Pool != null && Prefab_Data.resources_Pool.Count > 0) {
-                    Prefab_Data.resources_Pool.Clear();
+                    Prefab_Data.Clear();
                 }
             }
 
