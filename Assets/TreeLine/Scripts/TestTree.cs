@@ -8,7 +8,8 @@ public class TestTree : MonoBehaviour {
     RPA_Tree tree01;
     // Start is called before the first frame update
 
-
+    public Material material;
+    TreeLine treeLine;
     void Start() {
         tree01 = new RPA_Tree(transform.position);
         /*
@@ -20,14 +21,18 @@ public class TestTree : MonoBehaviour {
         RPA_TreeNode node6 = tree01.GrowBranchNode(node5);
         RPA_TreeNode node7 = tree01.GrowBranchNode(node6);
         */
-
+        treeLine = new TreeLine(material);
+        
     }
 
     void Update() {
-        if (Input.GetMouseButtonDown(0)) {
-            tree01.Grow(12.0f, 10);
-
+        if(Input.GetMouseButtonDown(0)) {
+            tree01.Grow(10.0f, 15);
         }
+
+        //tree01.ShowTreeLine();
+        tree01.ShowTreeLine2();
+
     }
 
     public Transform testObj;

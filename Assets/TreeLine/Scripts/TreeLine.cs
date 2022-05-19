@@ -4,25 +4,35 @@ using UnityEngine;
 
 namespace RPA {
     public class TreeLine {
+        
         Mesh mesh;
         Matrix4x4 localToWorld;
-        float length;
         Material material;
-        public TreeLine(float length, Material material) {
+        public TreeLine(Material material, float length = 1.0f) {
             Vector3[] vertices = new Vector3[4];
             vertices[0] = Vector3.right * 0.1f;
             vertices[1] = Vector3.left * 0.1f;
-            vertices[2] = vertices[0] + Vector3.up * length;
-            vertices[3] = vertices[1] + Vector3.up * length;
+            vertices[2] = vertices[0] + Vector3.down * length;
+            vertices[3] = vertices[1] + Vector3.down * length;
+
+            Color[] colors = new Color[4];
+            colors[0] = colors[1] = colors[2] = colors[3] = Color.yellow;
+
+            int[] triangles = new int[6] {0, 1, 2, 1, 3, 2 };
+
+
             mesh = new Mesh();
             mesh.vertices = vertices;
+            mesh.colors = colors;
+            mesh.triangles = triangles;
             this.material = material;
 
+  
         }
 
-        public void Show(RPA_Tree tree) {
+        public void ShowPreview(RPA_Tree tree) {
+            //Graphics.DrawMeshInstanced(mesh, 0, material, tree.GetTreeNodeMatrices());
         }
-
 
     }
 
@@ -66,7 +76,7 @@ namespace RPA {
                 GrowBranchNode(root, length);
             } else {
                 foreach (RPA_TreeNode parentNode in tree[grade - 1]) {
-                    int number = Random.Range(1, branchNumberMax);
+                    int number = Random.Range(0, branchNumberMax);
                     for (int i = 0; i < number; i++) {
                         GrowBranchNode(parentNode);
                     }
@@ -108,6 +118,8 @@ namespace RPA {
             }
         }
 
+
+
         // 
         public void ShowTreeLine() {
             for (int i = 0; i < gradeCount; i++) {
@@ -117,6 +129,19 @@ namespace RPA {
                 foreach (RPA_TreeNode treeNode in tree[i]) {
                     RPA_TreeBranch branch = treeNode as RPA_TreeBranch;
                     Debug.DrawLine(branch.Position, branch.parent.Position);
+                }
+            }
+        }
+
+        public void ShowTreeLine2() {
+            for (int i = 0; i < gradeCount; i++) {
+                if (i == 0) {
+                    continue;
+                }
+                foreach (RPA_TreeNode treeNode in tree[i]) {
+                    RPA_TreeBranch branch = treeNode as RPA_TreeBranch;
+                    //Debug.DrawLine(branch.Position, branch.parent.Position);
+
                 }
             }
         }
@@ -177,12 +202,6 @@ namespace RPA {
             distanceToParent = Vector3.Distance(position, parent.Position);
         }
 
-        /*
-        public void ActiveVisualLineTarget() {
-            this.visualLineTarget = parent.Position;
-            //this.visualLineTarget = Vector3.MoveTowards(this.position, parent.Position, 1.0f);
-        }
-        */
 
 
     }
