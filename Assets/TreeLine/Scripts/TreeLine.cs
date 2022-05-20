@@ -4,34 +4,54 @@ using UnityEngine;
 
 namespace RPA {
     public class TreeLine {
-        
         Mesh mesh;
-        Matrix4x4 localToWorld;
+        public Mesh TreeLineMesh {
+            get {
+                return mesh;
+            }
+        }
         Material material;
-        public TreeLine(Material material, float length = 1.0f) {
-            Vector3[] vertices = new Vector3[4];
-            vertices[0] = Vector3.right * 0.1f;
-            vertices[1] = Vector3.left * 0.1f;
-            vertices[2] = vertices[0] + Vector3.down * length;
-            vertices[3] = vertices[1] + Vector3.down * length;
+        public Material TreeLineMaterial {
+            get {
+                return material;
+            }
+        }
 
-            Color[] colors = new Color[4];
-            colors[0] = colors[1] = colors[2] = colors[3] = Color.yellow;
+        List<Matrix4x4> localToMatrices;
 
-            int[] triangles = new int[6] {0, 1, 2, 1, 3, 2 };
+        public TreeLine(Material material) {
+            Vector3[] vertices = new Vector3[3];
+            vertices[0] = Vector3.right * 0.05f;
+            vertices[1] = Vector3.left * 0.05f;
+            vertices[2] = Vector3.forward;
 
+
+            Color[] colors = new Color[3];
+            colors[0] = colors[1] = colors[2] = Color.yellow;
+
+            int[] triangles = new int[3] { 0, 1, 2 };
 
             mesh = new Mesh();
             mesh.vertices = vertices;
             mesh.colors = colors;
             mesh.triangles = triangles;
             this.material = material;
-
-  
+            localToMatrices = new List<Matrix4x4>();
         }
 
-        public void ShowPreview(RPA_Tree tree) {
-            //Graphics.DrawMeshInstanced(mesh, 0, material, tree.GetTreeNodeMatrices());
+
+        public void Draw() {
+            if (localToMatrices != null && localToMatrices.Count > 1 && localToMatrices.Count < 1023) {
+                Graphics.DrawMeshInstanced(mesh, 0, material, localToMatrices.ToArray());
+            }
+
+
+        }
+
+        public void Clear() {
+            if (localToMatrices != null) {
+                localToMatrices.Clear();
+            }
         }
 
     }
@@ -41,6 +61,8 @@ namespace RPA {
         Dictionary<int, List<RPA_TreeNode>> tree;
         public RPA_TreeRoot root;
         int gradeCount;
+
+        TreeLine treeLine;
         public int GradeCount {
             get {
                 return gradeCount;
@@ -51,6 +73,11 @@ namespace RPA {
             tree = new Dictionary<int, List<RPA_TreeNode>>();
             tree[0] = new List<RPA_TreeNode>();
             tree[0].Add(root);
+            branchNodeMatrices = new List<Matrix4x4>();
+        }
+
+        public void SetTreeLine(TreeLine treeLine) {
+            this.treeLine = treeLine;
         }
 
         public RPA_TreeNode SetBranch(Vector3 position, RPA_TreeNode parent) {
@@ -73,12 +100,14 @@ namespace RPA {
         public void Grow(float length, int branchNumberMax) {
             grade++;
             if (grade == 1) {
-                GrowBranchNode(root, length);
+                RPA_TreeBranch newBranch = GrowBranchNode(root, length) as RPA_TreeBranch;
+                branchNodeMatrices.Add(newBranch.LocalToWorld);
             } else {
                 foreach (RPA_TreeNode parentNode in tree[grade - 1]) {
                     int number = Random.Range(0, branchNumberMax);
                     for (int i = 0; i < number; i++) {
-                        GrowBranchNode(parentNode);
+                        RPA_TreeBranch newBranch = GrowBranchNode(parentNode) as RPA_TreeBranch;
+                        branchNodeMatrices.Add(newBranch.LocalToWorld);
                     }
                 }
             }
@@ -133,17 +162,12 @@ namespace RPA {
             }
         }
 
+        List<Matrix4x4> branchNodeMatrices;
         public void ShowTreeLine2() {
-            for (int i = 0; i < gradeCount; i++) {
-                if (i == 0) {
-                    continue;
-                }
-                foreach (RPA_TreeNode treeNode in tree[i]) {
-                    RPA_TreeBranch branch = treeNode as RPA_TreeBranch;
-                    //Debug.DrawLine(branch.Position, branch.parent.Position);
-
-                }
+            if (branchNodeMatrices != null && branchNodeMatrices.Count < 1023) {
+                Graphics.DrawMeshInstanced(treeLine.TreeLineMesh, 0, treeLine.TreeLineMaterial, branchNodeMatrices.ToArray());
             }
+
         }
 
 
@@ -184,8 +208,15 @@ namespace RPA {
     }
 
     public class RPA_TreeBranch : RPA_TreeNode {
+        private Matrix4x4 localToWorld;
+        public Matrix4x4 LocalToWorld {
+            get {
+                return localToWorld;
+            }
+        }
         public RPA_TreeNode parent;
         float distanceToParent;
+        Vector3 directionToParent;
         public float Length {
             get {
                 return distanceToParent;
@@ -200,7 +231,21 @@ namespace RPA {
             this.parent = parent;
             this.gradeIndex = parent.GradeIndex + 1;
             distanceToParent = Vector3.Distance(position, parent.Position);
+            directionToParent = (parent.Position - position).normalized;
+            SettNodeTranform();
+
         }
+
+        void SettNodeTranform() {
+            Vector3 scale = Vector3.one;
+            scale.z *= distanceToParent;
+            Quaternion quaternion = Quaternion.LookRotation(directionToParent, Vector3.up);
+            localToWorld = Matrix4x4.TRS(this.position, quaternion, scale);
+
+        }
+
+
+
 
 
 
